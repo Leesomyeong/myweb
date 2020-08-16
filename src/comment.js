@@ -9,7 +9,7 @@ function SingleComment(detail) {
     <Comment>
       <Comment.Content>
         <Comment.Avatar src={human} />
-        <Comment.Author as="a">방문자</Comment.Author>
+        <Comment.Author as="a" style = {{marginLeft : "3px"}}>방문자</Comment.Author>
         <Comment.Metadata>
           <div>{detail.info.time}</div>
         </Comment.Metadata>
