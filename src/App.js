@@ -8,7 +8,7 @@ import blackhole1 from "./blackhole1.jpg";
 
 function App() {
   return (
-    <div style = {{backgroundColor : "black"}}>
+    <div>
       <Grid centered>
         <Grid.Row>
           <Image src={blackhole1} centered />
@@ -21,8 +21,8 @@ function App() {
       <br />
       <Divider horizontal>
         <Header as="h4">
-          <Icon name="comment alternate" />
-          댓글을 달아주세요!
+          <Icon name="comment alternate"/>
+           댓글을 달아주세요!
         </Header>
       </Divider>
 
