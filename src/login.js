@@ -15,7 +15,7 @@ function Login2() {
 class Login extends React.Component{
   constructor(){
     super()
-    this.state = {id : "아무것도 입력을 안 했구만!"}
+    this.state = {id : "아무것도 입력을 안 했구만! blank!"}
   }
 
   render(){

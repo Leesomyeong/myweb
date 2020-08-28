@@ -1,12 +1,18 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
 
+import { db } from "./fb.js";
+
 class Buttons extends React.Component{
   constructor(){
     super()
     this.state = {
       likes : 0
     }
+  }
+  componentDidMount = () => {
+
+      db.collection("Basic").doc("j2ga231NdxPTxaDSetIV").get().then(res => this.setState({likes : res.data().likes}))
   }
 
   render(){
@@ -20,22 +26,25 @@ class Buttons extends React.Component{
                   pointing: "left",
                   content: this.state.likes,
                 }}
-                onClick = {()=>this.setState(prevState => {
-                  return {likes : prevState.likes + 1}
-                })}
+                onClick = {()=>{this.setState(prevState => {
+                return {likes : prevState.likes + 1}
+              }, () => db.collection("Basic").doc("j2ga231NdxPTxaDSetIV").update({likes : this.state.likes}))}
+
+                  }
               />
               <Button
                 basic
                 color="blue"
-                content="Share"
-                icon="fork"
+                content="Visitors"
+                icon="eye"
                 label={{
                   as: "a",
                   basic: true,
                   color: "blue",
                   pointing: "left",
-                  content: "0",
+                  content: this.props.visitors,
                 }}
+                onClick = {()=> this.props.openModal()}
               /></div>)
   }
 }
