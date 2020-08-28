@@ -9,6 +9,7 @@ import {
   Grid,
   Input,
   Menu,
+  Dropdown
 } from "semantic-ui-react";
 import _ from "lodash";
 
@@ -90,7 +91,21 @@ class App extends React.Component {
             YIMCHOON LEE{" "}
           </h1>
           <Menu widths={3}>
-            <Menu.Item>Menu </Menu.Item>
+          <Dropdown text='Menu' pointing className='link item'>
+    <Dropdown.Menu>
+      <Dropdown.Item>
+        <Dropdown text='PROJECTS'>
+          <Dropdown.Menu>
+            <Dropdown.Item>painting</Dropdown.Item>
+            <Dropdown.Item>sculpture</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Dropdown.Item>
+      <Dropdown.Item>IMAGE COLLECTION</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item>ABOUT</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown>
             <Menu.Item>{`Welcome, ${this.state.userName}!`} </Menu.Item>
             <Menu.Item
               onClick={() => {
