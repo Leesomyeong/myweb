@@ -9,39 +9,19 @@ import {
   Grid,
   Input,
   Menu,
-  Dropdown
+  Dropdown,
 } from "semantic-ui-react";
 import _ from "lodash";
+import {Route, NavLimk} from 'react-router-dom';
 
-import Comments from "./comment.js";
-import Buttons from "./buttons.js";
+import Mainpage from "./mainpage.js";
+import Projectpage from "./projectpage.js";
+import Aboutpage from "./aboutpage.js";
+import Imagecollection from "./imagecollection.js";
 import VisitorsModal from "./modal.js";
 import { db, auth } from "./fb.js";
 
-import blackhole1 from "./images/blackhole1.jpg";
-import sunshine from "./images/sunshine.jpg";
-import light from "./images/light.jpg";
-import moonhalo from "./images/moonhalo.jpg";
-import passion from "./images/passion.jpg";
-
 var provider = new firebase.auth.GoogleAuthProvider();
-const imageArr = [
-  blackhole1,
-  light,
-  sunshine,
-  passion,
-  moonhalo,
-  blackhole1,
-  light,
-  sunshine,
-  passion,
-  moonhalo,
-  blackhole1,
-  light,
-  sunshine,
-  passion,
-  moonhalo,
-];
 
 class App extends React.Component {
   constructor() {
@@ -51,19 +31,9 @@ class App extends React.Component {
       isModalOpen: false,
       visitors: ["Nayeon", "Robert", "Donald"],
       imageNum: 0,
+      pageCode: 0,
     };
   }
-  changeImage = (num, dir) => {
-    let newNum = num;
-    if (num == 0 && dir == -1) {
-      newNum = imageArr.length - 1;
-    } else if (num == imageArr.length - 1 && dir == 1) {
-      newNum = 0;
-    } else {
-      newNum = num + dir;
-    }
-    this.setState({ imageNum: newNum });
-  };
 
   componentDidMount = () => {
     db.collection("Basic")
@@ -76,6 +46,7 @@ class App extends React.Component {
     this.setState((prevState) => {
       return { isModalOpen: !prevState.isModalOpen };
     });
+  changePage=(code)=> {this.setState({pageCode: code})}
 
   render() {
     return (
@@ -86,26 +57,26 @@ class App extends React.Component {
           visitorsList={this.state.visitors}
         />
         <div>
-          <h1 style={{ textAlign: "center", paddingTop: "20px", color: "red" }}>
+          <h1 style={{ textAlign: "center", paddingTop: "20px", color: "red" }} onClick={()=>{this.changePage(0)}}>
             {" "}
             YIMCHOON LEE{" "}
           </h1>
-          <Menu widths={3}>
-          <Dropdown text='Menu' pointing className='link item'>
-    <Dropdown.Menu>
-      <Dropdown.Item>
-        <Dropdown text='PROJECTS'>
-          <Dropdown.Menu>
-            <Dropdown.Item>painting</Dropdown.Item>
-            <Dropdown.Item>sculpture</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </Dropdown.Item>
-      <Dropdown.Item>IMAGE COLLECTION</Dropdown.Item>
-      <Dropdown.Divider />
-      <Dropdown.Item>ABOUT</Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
+          <Menu secondary widths={3} fluid>
+            <Dropdown text="Menu" pointing className="link item">
+              <Dropdown.Menu>
+                <Dropdown.Item>
+                  <Dropdown text="PROJECTS">
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={()=>{this.changePage(1)}}>painting</Dropdown.Item>
+                      <Dropdown.Item>sculpture</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Dropdown.Item>
+                <Dropdown.Item onClick={()=>{this.changePage(3)}}>IMAGE COLLECTION</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={()=>{this.changePage(2)}}>ABOUT</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
             <Menu.Item>{`Welcome, ${this.state.userName}!`} </Menu.Item>
             <Menu.Item
               onClick={() => {
@@ -118,10 +89,11 @@ class App extends React.Component {
                     // The signed-in user info.
                     var user = result.user;
                     return user.displayName;
-                    this.setState({userName : user.displayName});
+                    this.setState({ userName: user.displayName });
                     // ...
                   })
-                  .then((result) => { this.setState({ userName: result })
+                  .then((result) => {
+                    this.setState({ userName: result });
                     let duplicate = "";
                     duplicate = _.find(
                       this.stete.visitors,
@@ -140,7 +112,6 @@ class App extends React.Component {
                           })
                         );
                     } else {
-                      ;
                     }
                   })
                   .catch(function (error) {
@@ -159,68 +130,14 @@ class App extends React.Component {
             </Menu.Item>
           </Menu>
         </div>
-        <Divider horizontal>
-          <Header as="h4">
-            <Icon name="eye" />
-            My work
-          </Header>
-        </Divider>
-
-        <Grid columns={3}>
-          <Grid.Column style={{ textAlign: "center" }}>
-            <Button
-              onClick={() => this.changeImage(this.state.imageNum, -1)}
-              circular
-              size="massive"
-              icon="angle left"
-            />
-          </Grid.Column>
-
-          <Grid.Column>
-            <Image src={imageArr[this.state.imageNum]} size="massive" />
-          </Grid.Column>
-
-          <Grid.Column style={{ textAlign: "center" }}>
-            <Button
-              onClick={() => this.changeImage(this.state.imageNum, +1)}
-              circular
-              size="massive"
-              icon="angle right"
-            />
-          </Grid.Column>
-        </Grid>
-        <Grid centered>
-          <Grid.Row>
-            <Buttons
-              openModal={this.toggleModal}
-              visitors={this.state.visitors.length}
-            />
-          </Grid.Row>
-        </Grid>
-        <br />
-        <br />
-        <Divider horizontal></Divider>
-        <Grid centered columns={3}>
-          <Grid.Column>
-            <Comments userName={this.state.userName} />
-          </Grid.Column>
-        </Grid>
-
-        <Divider horizontal>
-          <Header as="h4">
-            <Icon name="box" />
-            other works
-          </Header>
-        </Divider>
-        <br />
-
-        <Grid centered>
-          <Image.Group size="medium">
-            <Image src={light} /> <Image src={sunshine} />{" "}
-            <Image src={passion} /> <Image src={moonhalo} />
-          </Image.Group>
-        </Grid>
-
+        {this.state.pageCode ? (
+          <Projectpage/>, <Aboutpage/> ) : (
+          <Mainpage
+            visitors={this.state.visitors}
+            toggleModal={this.toggleModal}
+            userName={this.state.userName}
+          />
+        )}
         <Divider horizontal>
           <Header as="h4">
             <Icon name="envelope" />

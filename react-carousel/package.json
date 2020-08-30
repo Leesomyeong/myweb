@@ -1,22 +1,15 @@
 {
-  "name": "myweb",
+  "name": "react-carousel",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "firebase": "^7.18.0",
-    "lodash": "^4.17.20",
-    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-native-image-slider-show": "^1.0.3",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.2",
-    "react-slideshow-image": "^3.2.0",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^1.1.1"
+    "react-scripts": "3.4.3",
+    "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

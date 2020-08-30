@@ -18,7 +18,7 @@ import human from "./images/human.png";
 
 function SingleComment(detail) {
   return (
-    <Comment>
+    <Comment fluid>
       <Comment.Content>
         <Comment.Avatar src={human} />
         <Comment.Author as="a" style={{ color: "DarkBlue", marginLeft: "3px" }}>
