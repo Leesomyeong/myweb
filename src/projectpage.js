@@ -30,16 +30,15 @@ const imageArr = ["https://firebasestorage.googleapis.com/v0/b/yimchoonlee.appsp
   light,
   sunshine,
   passion,
-  moonhalo,
+  moonhalo
 ];
 
 class Projectpage extends React.Component {
   constructor() {
-    super();
-    this.state = {
-        page: 1,
+    super();this.state = {
+        page: 0
+      }
     };
-  }
   render() {
     return (
       <div>
@@ -49,7 +48,7 @@ class Projectpage extends React.Component {
             {_.map(
               _.range(this.state.page * 6 - 6, this.state.page * 6 ),
               (i) => (
-                <img src={imageArr[i]} height="300"/>
+                <img src={imageArr[i]} height="300" key={i}/>
               )
             )}
         </Grid>
@@ -71,5 +70,6 @@ class Projectpage extends React.Component {
     );
   }
 }
+
 
 export default Projectpage;

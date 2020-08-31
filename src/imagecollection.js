@@ -4,12 +4,12 @@ class Imagecollection extends React.Component {
   constructor() {
     super();
     this.state = {
-        page: 3,
+        page: 2,
     };
   }
   render() {
     return (
-      <p>yimchoonlee
+      <p>this is imagecollection page
       </p>
     )
   }

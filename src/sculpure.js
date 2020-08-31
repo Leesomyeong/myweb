@@ -1,18 +1,18 @@
 import React from "react";
 
-class Aboutpage extends React.Component {
+class Sculpture extends React.Component {
   constructor() {
     super();
     this.state = {
-        page: 3
+        page: 1
     };
   }
   render() {
     return (
-      <p>this is aboutpage
+      <p> this is sculpure page
       </p>
     )
   }
 }
 
-export default Aboutpage;
+export default Sculpture;

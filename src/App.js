@@ -12,12 +12,9 @@ import {
   Dropdown,
 } from "semantic-ui-react";
 import _ from "lodash";
-import {Route, NavLimk} from 'react-router-dom';
 
-import Mainpage from "./mainpage.js";
-import Projectpage from "./projectpage.js";
-import Aboutpage from "./aboutpage.js";
-import Imagecollection from "./imagecollection.js";
+import Page from "./page.js";
+import Downdrop from "./downdrop.js";
 import VisitorsModal from "./modal.js";
 import { db, auth } from "./fb.js";
 
@@ -31,7 +28,7 @@ class App extends React.Component {
       isModalOpen: false,
       visitors: ["Nayeon", "Robert", "Donald"],
       imageNum: 0,
-      pageCode: 0,
+      page: 5
     };
   }
 
@@ -46,7 +43,9 @@ class App extends React.Component {
     this.setState((prevState) => {
       return { isModalOpen: !prevState.isModalOpen };
     });
-  changePage=(code)=> {this.setState({pageCode: code})}
+  changePage= (no) => {
+    this.setState({ page: (no) });
+  };
 
   render() {
     return (
@@ -57,27 +56,13 @@ class App extends React.Component {
           visitorsList={this.state.visitors}
         />
         <div>
-          <h1 style={{ textAlign: "center", paddingTop: "20px", color: "red" }} onClick={()=>{this.changePage(0)}}>
+          <h1 style={{ textAlign: "center", paddingTop: "20px", color: "red" }} onClick={()=>{this.changePage(5)}}>
             {" "}
             YIMCHOON LEE{" "}
           </h1>
-          <Menu secondary widths={3} fluid>
-            <Dropdown text="Menu" pointing className="link item">
-              <Dropdown.Menu>
-                <Dropdown.Item>
-                  <Dropdown text="PROJECTS">
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={()=>{this.changePage(1)}}>painting</Dropdown.Item>
-                      <Dropdown.Item>sculpture</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Dropdown.Item>
-                <Dropdown.Item onClick={()=>{this.changePage(3)}}>IMAGE COLLECTION</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item onClick={()=>{this.changePage(2)}}>ABOUT</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Menu.Item>{`Welcome, ${this.state.userName}!`} </Menu.Item>
+          <Menu secondary widths={3} centered >
+            <Downdrop changePage={this.changePage}/>
+            <Menu.Item >{`Welcome, ${this.state.userName}!`} </Menu.Item>
             <Menu.Item
               onClick={() => {
                 firebase
@@ -130,14 +115,12 @@ class App extends React.Component {
             </Menu.Item>
           </Menu>
         </div>
-        {this.state.pageCode ? (
-          <Projectpage/>, <Aboutpage/> ) : (
-          <Mainpage
+          <Page
+          page={this.state.page}
             visitors={this.state.visitors}
             toggleModal={this.toggleModal}
             userName={this.state.userName}
           />
-        )}
         <Divider horizontal>
           <Header as="h4">
             <Icon name="envelope" />

@@ -16,6 +16,22 @@ const imageArr = [
   moonhalo,
 ];
 
+onClick={()=>{this.changePage(1)}}
+
+
+34 pageCode: 0,
+
+49 changePage=(code)=> {this.setState({pageCode: code})}
+
+
+132{this.state.pageCode ? (
+  <Projectpage/>, <Aboutpage/> ) : (
+  <Mainpage
+    visitors={this.state.visitors}
+    toggleModal={this.toggleModal}
+    userName={this.state.userName}
+  />
+)}
 
 <Grid columns={3}>
   <Grid.Column style={{ textAlign: "center" }}>

@@ -41,8 +41,9 @@ setTimer(){
     return (
       <Grid centered>
         <Image
-          src={imageArr[this.state.imgIndex]} fluid
+          src={imageArr[this.state.imgIndex]} fluid="true"
           usemap="#imagemap"
+          key={ imageArr.length}
         />{" "}
         <map name="imagemap">
           <area
