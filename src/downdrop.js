@@ -30,7 +30,7 @@ class Downdrop extends Component {
   render() {
     return (
       <div>
-      <Dropdown text="Menu" pointing className="link item" >
+      <Dropdown text="Menu" pointing className="link item" style={{ marginLeft: 20 }}>
         <Dropdown.Menu >
           {this.renderMenus(this.menus)}
         </Dropdown.Menu>

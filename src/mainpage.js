@@ -1,15 +1,33 @@
 import React from "react";
+import Styled from "styled-components";
 import {Grid, Divider, Header, Icon} from "semantic-ui-react";
 
 import SlideShow from "./slideshow.js"
 import Comments from "./comment.js";
 import Buttons from "./buttons.js";
 
+const AppContainer = Styled.div`
+&,
+& * {
+  box-sizing: border-box;
+}
+`;
+
+const SlideContainer = Styled.div`
+width: 25%
+float: left;
+`;
+
+const CommentContainer = Styled.div`
+  width: 40%;
+  float: center;
+`;
+
 class Mainpage extends React.Component{
   render(){
     return(<div>
 <br/>
-      <SlideShow/>
+    <SlideContainer><SlideShow/></SlideContainer>
 
             <Grid centered>
               <Grid.Row>
@@ -22,7 +40,7 @@ class Mainpage extends React.Component{
             <br />
             <br />
             <Divider horizontal></Divider>
-            <Grid centered columns={3}>
+            <Grid>
               <Grid.Column>
                 <Comments userName={this.props.userName} />
               </Grid.Column>

@@ -60,9 +60,10 @@ class App extends React.Component {
             {" "}
             YIMCHOON LEE{" "}
           </h1>
-          <Menu secondary widths={3} centered >
-            <Downdrop changePage={this.changePage}/>
-            <Menu.Item >{`Welcome, ${this.state.userName}!`} </Menu.Item>
+          <Menu secondary fluid="true" widths={3}>
+          <Menu.Item>
+            <Downdrop changePage={this.changePage} /></Menu.Item>
+            <Menu.Item>{` Welcome, ${this.state.userName}!`} </Menu.Item>
             <Menu.Item
               onClick={() => {
                 firebase

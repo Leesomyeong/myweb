@@ -10,6 +10,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
     "react": "^16.13.1",
+    "react-app-rewire-styled-components": "^3.0.2",
     "react-dom": "^16.13.1",
     "react-native-image-slider-show": "^1.0.3",
     "react-router-dom": "^5.2.0",
@@ -38,5 +39,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.2",
+    "babel-plugin-styled-components": "^1.11.1",
+    "cross-env": "^7.0.2",
+    "styled-components": "^5.1.1"
   }
 }

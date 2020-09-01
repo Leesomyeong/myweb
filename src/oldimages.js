@@ -56,3 +56,10 @@ onClick={()=>{this.changePage(1)}}
     />
   </Grid.Column>
 </Grid>
+
+
+  const CommentContainer = styled.div`
+    width: 40%;
+    float: center;
+    padding: 15px;
+    border: 1px solid red;
